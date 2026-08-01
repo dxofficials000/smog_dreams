@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smog Dream General Solutions Hub | Ogombo</title>
+    <style>
+        :root {
+            --bg-color: #050811;
+            --card-bg: rgba(18, 24, 38, 0.75);
+            --neon-cyan: #00f2fe;
+            --neon-blue: #4facfe;
+            --accent-green: #25d366;
+            --text-main: #ffffff;
+            --text-muted: #94a3b8;
+            --border-glass: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Luxury Header & Navigation */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background: rgba(5, 8, 17, 0.9);
+            backdrop-filter: blur(15px);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-glass);
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+        }
+
+        .logo-img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--neon-cyan);
+            animation: pulseGlow 3s infinite alternate;
+        }
+
+        .brand-name {
+            font-size: 1.2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 1px;
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover, nav a.active-link {
+            color: var(--neon-cyan);
+        }
+
+        /* PAGE VIEWS SYSTEM */
+        .page-view {
+            display: none;
+            padding-top: 100px;
+            min-height: 100vh;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        .page-view.active-page {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Hero Section with Floating Logo */
+        .hero {
+            text-align: center;
+            padding: 40px 20px 30px;
+        }
+
+        .floating-logo-container {
+            width: 130px;
+            height: 130px;
+            margin: 0 auto 25px;
+            border-radius: 50%;
+            padding: 4px;
+            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-blue));
+            animation: floatAnimation 4s ease-in-out infinite;
+            box-shadow: 0 0 35px rgba(0, 242, 254, 0.4);
+        }
+
+        .floating-logo-container img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        @keyframes floatAnimation {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-12px) rotate(2deg); }
+        }
+
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 10px rgba(0, 242, 254, 0.3); }
+            100% { box-shadow: 0 0 25px rgba(0, 242, 254, 0.8); }
+        }
+
+        .hero h1 {
+            font-size: 2.3rem;
+            font-weight: 900;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            max-width: 600px;
+            margin: 0 auto 25px;
+        }
+
+        /* Founder's Special Circle */
+        .founder-section {
+            text-align: center;
+            padding: 25px 20px;
+            background: linear-gradient(180deg, rgba(18, 24, 38, 0.4) 0%, transparent 100%);
+        }
+
+        .founder-circle {
+            width: 110px;
+            height: 110px;
+            margin: 0 auto 15px;
+            border-radius: 50%;
+            padding: 3px;
+            background: linear-gradient(45deg, #ff007f, var(--neon-cyan));
+            box-shadow: 0 0 25px rgba(255, 0, 127, 0.3);
+        }
+
+        .founder-circle img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .founder-name {
+            font-size: 1.15rem;
+            font-weight: 700;
+        }
+
+        .founder-title {
+            font-size: 0.85rem;
+            color: var(--neon-cyan);
+            margin-top: 3px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        /* Containers & Grids */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border-glass);
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .glass-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-glass);
+            border-radius: 16px;
+            padding: 22px;
+            backdrop-filter: blur(12px);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--neon-cyan);
+        }
+
+        .glass-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .glass-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* Filter Buttons for Gallery */
+        .filter-buttons {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+
+        .filter-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--border-glass);
+            color: var(--text-muted);
+            padding: 8px 18px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-blue));
+            color: #000;
+            border-color: transparent;
+        }
+
+        /* Product Grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .product-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-glass);
+            border-radius: 16px;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 30px rgba(0, 242, 254, 0.15);
+        }
+
+        .product-img-wrapper {
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .product-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-img-wrapper img {
+            transform: scale(1.05);
+        }
+
+        .product-info {
+            padding: 16px;
+        }
+
+        .product-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .whatsapp-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: var(--accent-green);
+            color: #fff;
+            text-decoration: none;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: opacity 0.3s ease;
+        }
+
+        .whatsapp-btn:hover {
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(5, 8, 17, 0.95);
+            border-top: 1px solid var(--border-glass);
+            padding: 40px 20px 25px;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .social-pill {
+            background: var(--card-bg);
+            border: 1px solid var(--border-glass);
+            padding: 10px 20px;
+            border-radius: 30px;
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: border-color 0.3s ease;
+        }
+
+        .social-pill:hover {
+            border-color: var(--neon-cyan);
+            color: var(--neon-cyan);
+        }
+
+        .copyright {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-area" onclick="switchPage('home')">
+            <img src="hero1.jpg" alt="Smog Dream Logo" class="logo-img">
+            <span class="brand-name">SMOG DREAM</span>
+        </div>
+        <nav>
+            <a onclick="switchPage('home')" id="nav-home" class="active-link">Home</a>
+            <a onclick="switchPage('gallery')" id="nav-gallery">Gallery & Shop</a>
+        </nav>
+    </header>
+
+    <div id="page-home" class="page-view active-page">
+        <section class="hero">
+            <div class="floating-logo-container">
+                <img src="hero1.jpg" alt="Logo Animated">
+            </div>
+            <h1>General Solutions Hub</h1>
+            <p>No. 1 in Ogombo for Top-Tier Tech Gadgets, Secure Financial Services, NIN Enrolment, and Fast Phone Charging.</p>
+            <a onclick="switchPage('gallery')" class="social-pill" style="background:var(--neon-cyan); color:#000; border:none; display:inline-block; cursor:pointer;">Explore Products & Gallery →</a>
+        </section>
+
+        <section class="founder-section">
+            <div class="founder-circle">
+                <img src="hero2.jpg" alt="Founder">
+            </div>
+            <div class="founder-name">MR SAMUEL OGUCHE</div>
+            <div class="founder-title">principal consultant of
+            smog dream</div>
+        </section>
+
+        <div class="container">
+            <h2 class="section-title">What We Offer</h2>
+            <div class="grid-2">
+                <div class="glass-card">
+                    <h3>⚡ Secure Phone Charging Station</h3>
+                    <p>Reliable, fast, and safe multi-device power station to keep your gadgets fully powered up all day.</p>
+                </div>
+                <div class="glass-card">
+                    <h3>💳 Moniepoint POS & Financial Services</h3>
+                    <p>Instant cash withdrawals, deposits, account opening, ATM cards, and business financial solutions.</p>
+                </div>
+                <div class="glass-card">
+                    <h3>🆔 NIN Enrolment & Modification Center</h3>
+                    <p>Seamless NIN registration, slip downloads, modifications, tracking, and validation services.</p>
+                </div>
+                <div class="glass-card">
+                    <h3>🏢 CAC Business Registration</h3>
+                    <p>Fast corporate affairs commission registration for business names, limited companies, and TIN.</p>
+                </div>
+                <div class="glass-card">
+                    <h3>📶 SIM Registration & Activation</h3>
+                    <p>Instant registration, linking, and activation across major networks (MTN, Airtel, Glo, 9mobile).</p>
+                </div>
+                <div class="glass-card">
+                    <h3>🎧 Premium Gadgets & Accessories</h3>
+                    <p>High-end headphones, tablets, heavy-duty power banks, smart devices, and mobile accessories.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="page-gallery" class="page-view">
+        <div class="container">
+            <h2 class="section-title">Explore Our Products & Gadgets</h2>
+            <p style="color:var(--text-muted); margin-bottom: 25px;">Tap any WhatsApp button below an item to order or inquire instantly.</p>
+
+            <div class="filter-buttons">
+                <button class="filter-btn active" onclick="filterCategory('all', event)">All Products</button>
+                <button class="filter-btn" onclick="filterCategory('gadgets', event)">Gadgets & Devices</button>
+                <button class="filter-btn" onclick="filterCategory('services', event)">Services & Agency</button>
+            </div>
+
+            <div class="product-grid" id="productGrid"></div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="social-links">
+            <a href="https://wa.me/2348168224476" target="_blank" class="social-pill">WhatsApp Chat</a>
+            <a href="#" class="social-pill">Instagram Hub</a>
+            <a href="#" class="social-pill">TikTok Page</a>
+        </div>
+        <p class="copyright">&copy; 2026 Smog Dream General Solutions Hub. All Rights Reserved.</p>
+        <p style="color: var(--neon-cyan); font-size: 0.8rem; font-weight: 700; letter-spacing: 1.5px; margin-top: 8px; text-transform: uppercase;">Created by dxofficials</p>
+    </footer>
+
+    <script src="product.js"></script>
+    <script>
+        const phoneNumber = "2348168224476"; // Replace with your WhatsApp number
+
+        // Page Switcher Tab Function
+        function switchPage(pageId) {
+            document.querySelectorAll('.page-view').forEach(page => {
+                page.classList.remove('active-page');
+            });
+            document.querySelectorAll('nav a').forEach(link => {
+                link.classList.remove('active-link');
+            });
+
+            document.getElementById('page-' + pageId).classList.add('active-page');
+            document.getElementById('nav-' + pageId).classList.add('active-link');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Render products from product.js (No price version)
+        function renderProducts(items) {
+            const grid = document.getElementById('productGrid');
+            if (!grid) return;
+            grid.innerHTML = "";
+
+            items.forEach(product => {
+                const message = encodeURIComponent(`Hello Smog Dream, I want to inquire about: *${product.name}*`);
+                const whatsappLink = `https://wa.me/${phoneNumber}?text=${message}`;
+
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.innerHTML = `
+                    <div class="product-img-wrapper">
+                        <img src="${product.image}" alt="${product.name}" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-title">${product.name}</div>
+                        <a href="${whatsappLink}" target="_blank" class="whatsapp-btn">
+                            Order on WhatsApp
+                        </a>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function filterCategory(category, event) {
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            if (category === 'all') {
+                renderProducts(smogProducts);
+            } else {
+                const filtered = smogProducts.filter(p => p.category === category);
+                renderProducts(filtered);
+            }
+        }
+
+        // Initialize gallery on load
+        window.addEventListener("DOMContentLoaded", () => {
+            if (typeof smogProducts !== "undefined") {
+                renderProducts(smogProducts);
+            }
+        });
+    </script>
+</body>
+</html>
